@@ -1,7 +1,37 @@
-﻿@page "/"
+@page "/"
+@using ConradInterviewProject.Components.Data
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Radiation Dose Data</h1>
 
-Welcome to your new app.
+@if (RadiationData.RadiationLocations == null || !RadiationData.RadiationLocations.Any())
+{
+    <p>No radiation data available.</p>
+}
+else
+{
+    @foreach (var location in RadiationData.RadiationLocations)
+    {
+        <h3>@location.Location</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Procedure</th>
+                    <th>Comparison</th>
+                    <th>AED (mSv)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in location.DoseRecords)
+                {
+                    <tr>
+                        <td>@record.Procedure</td>
+                        <td>@record.Comparison</td>
+                        <td>@record.AED</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
