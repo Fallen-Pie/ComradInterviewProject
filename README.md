@@ -1,13 +1,13 @@
 # Comrad Interview Project - Radiation Dose Data
 
 This application displays approximate effective radiation doses for common diagnostic imaging procedures. 
-It allows users to view data categorized by medical location and filter the results accordingly.  
+It allows users to view data categorised by medical location and filter the results accordingly.  
 *This application is part of a technical assessment exercise and is not intended for
 clinical use, diagnosis, treatment, or medical decision making.*
 
 ## Technologies Used
 
-- **Rider**: IDE choosen for development.
+- **Rider**: IDE chosen for development.
 - **Junie**: AI assistant used in helping to create this project.
 - **Gemini**: AI tool used for parsing the PDF file into CSV.
 - **.NET 10.0**: The latest cross-platform framework for building modern applications.
@@ -24,7 +24,6 @@ clinical use, diagnosis, treatment, or medical decision making.*
 Since the project is built on the .NET 10 framework, it must be run using the .NET runtime.
 ### Running Locally (Requires .NET 10 SDK)
 To run the application directly on your machine, you will need to install the .NET 10 SDK.
-[REFLECTION.md](REFLECTION.md)
 1.  **Install .NET 10 SDK:**
     Download and install it from the official Microsoft site: [.NET 10 Download](https://dotnet.microsoft.com/download/dotnet/10.0)
 2.  **Clone/Open the project:**
