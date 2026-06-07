@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ComradInterviewProject.Tests/ComradInterviewProject.Tests.csproj" />
+  <Project Path="ComradInterviewProject/ComradInterviewProject.csproj" />
+</Solution>

@@ -1,0 +1,94 @@
+@page "/"
+@using ComradInterviewProject.Components.Data
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<style>
+    .card-header-custom {
+        background-color: #052767 !important;
+        color: white;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="pb-2 mb-4 border-bottom">
+        <h1 class="display-5">Radiation Dose Data</h1>
+    </div>
+
+    @if (RadiationData.RadiationLocations == null || !RadiationData.RadiationLocations.Any())
+    {
+        <div class="alert alert-info">No radiation data available.</div>
+    }
+    else
+    {
+        <div class="row mb-4">
+            <div class="col-12">
+                <p class="lead">
+                    This guide provides approximate effective radiation doses for common diagnostic imaging
+                    procedures.
+                </p>
+                <p class="text-muted">
+                    Effective dose is measured in millisieverts (mSv) and is used to estimate the overall
+                    impact of radiation exposure on the body. In the tables below, <strong>A.E.D.</strong> stands for Approximate
+                    Effective Dose. The comparison column translates each examination's dose into an equivalent
+                    period of natural background radiation exposure, helping patients and clinicians better understand
+                    relative dose levels. Actual radiation doses may vary depending on patient size, imaging
+                    equipment, and examination protocols.
+                </p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <label for="locationFilter" class="form-label fw-bold">Filter by Location:</label>
+                <select id="locationFilter" class="form-select" @bind="selectedLocation">
+                    <option value="All">Display all Locations</option>
+                    @foreach (var location in RadiationData.RadiationLocations.OrderBy(l => l.Location))
+                    {
+                        <option value="@location.Location">@location.Location</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        @foreach (var location in FilteredLocations)
+        {
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header card-header-custom">
+                    <h3 class="card-title mb-0">@location.Location</h3>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width: 40%">Procedure</th>
+                                <th style="width: 40%">Comparison</th>
+                                <th style="width: 20%" class="text-center">A.E.D. (mSv)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var record in location.DoseRecords)
+                            {
+                                <tr>
+                                    <td>@record.Procedure</td>
+                                    <td>@record.Comparison</td>
+                                    <td class="text-center">@record.AED</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@code {
+    private string selectedLocation = "All";
+
+    private IEnumerable<RadiationLocation> FilteredLocations =>
+        selectedLocation == "All"
+            ? RadiationData.RadiationLocations.OrderBy(l => l.Location)
+            : RadiationData.RadiationLocations.Where(l => l.Location == selectedLocation);
+}

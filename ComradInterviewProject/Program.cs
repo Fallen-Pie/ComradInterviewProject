@@ -1,4 +1,4 @@
-using ConradInterviewProject.Components;
+using ComradInterviewProject.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,7 +1,7 @@
-using ConradInterviewProject.Components.Data;
+using ComradInterviewProject.Components.Data;
 using Xunit;
 
-namespace ConradInterviewProject.Tests;
+namespace ComradInterviewProject.Tests;
 
 public class DataImporterTests : IDisposable
 {
