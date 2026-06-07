@@ -14,13 +14,13 @@
 
 - I used Junie to help contruct large parts of the project. All the Commits labeled with (A.I) have had Junie 
 help with creating Logic or formatting the web page to be presentable.
-- My process was that I would create classes, fields, and structure for the AI to follow, and keep the tasks small so
-that the AI wouldn't try to do too much at once and make mistakes. Occasionally I would need to correct something, but this
+- My process was that I would create Classes, fields and structure for the AI to follow and keep the tasks small so
+that the AI wouldnt try to do too much at once and make mistakes. Occasianlly I would to correct something but this
 process was mostly smooth.
-- To parse the data on the PDF, I used the AI tool Gemini to save time. While I did go over the data to make sure it 
-had all been properly made, I can't be sure that it is 100% right.
-- I am not completely sold on AI tools, so when using them in this project, I made sure to certifiy what they had written
-and provide clear instructions to them. If during the process they were going off topic or making mistakes,
+- To parse the data on the PDF I used the AI tool Gemini to save time. While I did go over the data to make sure it 
+had all been properly made, I cant be sure that it is 100% right.
+- I am not completely sold on AI tools so when using them in this project I made sure to cerfiy what they had written
+and provide clear instructions to them. If during the process they where going off topic or making mistakes,
 I would stop them and reword the prompt to clarify any details.
 
 ---
