@@ -16,6 +16,7 @@ public class DataImporter
         var lines = File.ReadAllLines(filePath);
         if (lines.Length <= 1) return new HashSet<RadiationLocation>();
 
+        TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
         // Expecting columns: Location, Procedure, AED, Comparison
         for (int i = 1; i < lines.Length; i++)
         {
@@ -25,7 +26,7 @@ public class DataImporter
             var parts = line.Split(',');
             if (parts.Length < 4) continue;
 
-            string locationName = parts[0].Trim();
+            string locationName = textInfo.ToTitleCase(parts[0].Trim().ToLower());
             string procedure = parts[1].Trim();
             string aedStr = parts[2].Trim();
             string comparison = parts[3].Trim();
