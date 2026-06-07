@@ -13,5 +13,5 @@ public record RadiationDoseRecord
                 : throw new ArgumentException("AED must be greater than 0");
     }
 
-    public string AED => AedValue.ToString("F1");
+    public string AED => (AedValue <= 0.001f) ? ">" + AedValue : AedValue.ToString();
 }
