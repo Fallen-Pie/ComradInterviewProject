@@ -1,12 +1,10 @@
-﻿using System.Runtime.Intrinsics.X86;
-
 namespace ConradInterviewProject.Components.Data;
 
 public record RadiationDoseRecord
 {
-    public string Procedure { get; }
-    public string Comparison { get; }
-    private float AedValue
+    public required string Procedure { get; init; }
+    public required string Comparison { get; init; }
+    public required float AedValue
     {
         get;
         init =>
@@ -16,9 +14,4 @@ public record RadiationDoseRecord
     }
 
     public string AED => AedValue.ToString("F1");
-
-    public override int GetHashCode()
-    {
-        return Procedure.GetHashCode();
-    }
 }

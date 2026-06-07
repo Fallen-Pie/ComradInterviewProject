@@ -2,6 +2,11 @@
 
 public class RadiationLocation
 {
-    string Location { get; }
-    HashSet<RadiationDoseRecord> DoseRecords { get; }
+    public string Location { get; init; }
+    public HashSet<RadiationDoseRecord> DoseRecords { get; } = new();
+
+    public RadiationLocation(string location)
+    {
+        Location = location;
+    }
 }
