@@ -31,7 +31,7 @@ To run the application directly on your machine, you will need to install the .N
     Navigate to the root directory of the project in your terminal.
 3.  **Run the project:**
     ```bash
-    dotnet run --project ConradInterviewProject/ConradInterviewProject.csproj
+    dotnet run --project ComradInterviewProject/ConradInterviewProject.csproj
     ```
 4.  **Access the application:**
     The terminal will provide the local URLs (e.g., `http://localhost:5080` or `https://localhost:7150`).
