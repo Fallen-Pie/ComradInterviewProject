@@ -7,6 +7,6 @@ public static class RadiationData
     static RadiationData()
     {
         DataImporter radiationData = new();
-        RadiationLocations = radiationData.ImportData("RadiationDose.csv");
+        RadiationLocations = radiationData.ImportData("Components/Data/RadiationDose.csv");
     }
 }
