@@ -4,17 +4,17 @@ namespace ConradInterviewProject.Components.Data;
 
 public class DataImporter
 {
-    public List<RadiationLocation> ImportData(string filePath)
+    public HashSet<RadiationLocation> ImportData(string filePath)
     {
         var locations = new Dictionary<string, RadiationLocation>();
 
         if (!File.Exists(filePath))
         {
-            return new List<RadiationLocation>();
+            throw new FileNotFoundException($"File not found: {filePath}");
         }
 
         var lines = File.ReadAllLines(filePath);
-        if (lines.Length <= 1) return new List<RadiationLocation>();
+        if (lines.Length <= 1) return new HashSet<RadiationLocation>();
 
         // Expecting columns: Location, Procedure, AED, Comparison
         for (int i = 1; i < lines.Length; i++)
@@ -58,6 +58,6 @@ public class DataImporter
             }
         }
 
-        return locations.Values.ToList();
+        return locations.Values.ToHashSet();
     }
 }
