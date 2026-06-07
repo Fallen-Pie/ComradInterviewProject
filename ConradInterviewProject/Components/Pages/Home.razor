@@ -1,37 +1,68 @@
 @page "/"
+@rendermode InteractiveServer
 @using ConradInterviewProject.Components.Data
 
 <PageTitle>Home</PageTitle>
 
-<h1>Radiation Dose Data</h1>
+<div class="container mt-4">
+    <h1 class="mb-4">Radiation Dose Data</h1>
 
-@if (RadiationData.RadiationLocations == null || !RadiationData.RadiationLocations.Any())
-{
-    <p>No radiation data available.</p>
-}
-else
-{
-    @foreach (var location in RadiationData.RadiationLocations)
+    @if (RadiationData.RadiationLocations == null || !RadiationData.RadiationLocations.Any())
     {
-        <h3>@location.Location</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Procedure</th>
-                    <th>Comparison</th>
-                    <th>AED (mSv)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var record in location.DoseRecords)
-                {
-                    <tr>
-                        <td>@record.Procedure</td>
-                        <td>@record.Comparison</td>
-                        <td>@record.AED</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <div class="alert alert-info">No radiation data available.</div>
     }
+    else
+    {
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <label for="locationFilter" class="form-label font-weight-bold">Filter by Location:</label>
+                <select id="locationFilter" class="form-select" @bind="selectedLocation">
+                    <option value="All">Display all Locations</option>
+                    @foreach (var location in RadiationData.RadiationLocations.OrderBy(l => l.Location))
+                    {
+                        <option value="@location.Location">@location.Location</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        @foreach (var location in FilteredLocations)
+        {
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">@location.Location</h3>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width: 40%">Procedure</th>
+                                <th style="width: 40%">Comparison</th>
+                                <th style="width: 20%" class="text-center">AED (mSv)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var record in location.DoseRecords)
+                            {
+                                <tr>
+                                    <td>@record.Procedure</td>
+                                    <td>@record.Comparison</td>
+                                    <td class="text-center">@record.AED</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@code {
+    private string selectedLocation = "All";
+
+    private IEnumerable<RadiationLocation> FilteredLocations =>
+        selectedLocation == "All"
+            ? RadiationData.RadiationLocations.OrderBy(l => l.Location)
+            : RadiationData.RadiationLocations.Where(l => l.Location == selectedLocation);
 }
